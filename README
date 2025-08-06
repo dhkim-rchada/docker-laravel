@@ -1,0 +1,55 @@
+#라라벨설치
+docker compose run --rm app composer create-project laravel/laravel .
+
+docker exec -it laravel_mariadb mysql -u root -p
+
+# 비밀번호 입력: QOrtpwn4@@
+
+# 마이그레이션 실행 (users, password_resets 등 테이블 생성됨)
+
+docker compose run --rm app php artisan migrate
+docker compose run --rm --service-ports app php artisan migrate
+
+# .env 수정시 캐시 클리어
+
+docker compose run --rm app php artisan config:clear
+docker compose run --rm app php cache:clear
+docker compose run --rm app php config:cache
+
+docker compose down
+docker compose up -d --remove-orphans
+docker compose up --build -d --remove-orphans
+
+# 라라벨 controller 생성
+
+docker-compose exec app php artisan make:controller TestController
+
+# 임시컨테이너 생성 후 실행 자동삭제
+
+#docker compose run --rm app php artisan make:controller TestController
+
+# 라라벨 모델 생성
+
+docker-compose exec app php artisan make:model CarEstimate
+
+#JWT 및 OAuth2.0 Bearer 토큰 설정 #라우트 미들웨어에서 처리되는 JWT 토큰 및 OAuth2.0 Bearer 스키마를 확인하는 코드를 알려드릴게요.
+
+#JWT 및 OAuth2.0 Bearer 토큰 설정 #라라벨에서 JWT를 사용하여 OAuth2.0 Bearer 토큰 스키마를 구현하려면 라라벨 패스포트(Laravel Passport) 또는 라라벨 산텀(Laravel Sanctum) 패키지를 사용하는 것이 일반적입니다. 여기서는 더 가볍고 API 전용인 Sanctum을 기준으로 설명해 드리겠습니다.
+
+#1. Sanctum 설치 #터미널에서 아래 명령어를 실행하여 Sanctum 패키지를 설치합니다.
+docker-compose exec app composer require laravel/sanctum
+
+#2. 마이그레이션 실행 #패키지 설치 후, 토큰을 저장할 데이터베이스 테이블을 생성하기 위해 마이그레이션을 실행합니다.
+docker-compose exec app php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+docker-compose exec app php artisan migrate
+
+#3. 모델 설정
+#app/Models/User.php 모델에 HasApiTokens 트레이트를 추가합니다. 이 트레이트는 토큰 생성 및 관리를 위한 메서드를 제공합니다.
+
+#Laravel 11 버전부터는 API 라우트 파일을 수동으로 생성해야
+docker-compose exec app php artisan install:api
+
+# 라우트 캐시 삭제
+docker-compose exec app php artisan route:clear
+docker-compose exec app php artisan route:cache
+docker-compose exec app php artisan route:list

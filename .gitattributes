@@ -1,0 +1,67 @@
+# Apache htaccess
+.htaccess text eol=lf
+
+# PHP files
+*.php text eol=lf
+
+# HTML files
+*.html text eol=lf
+
+# JavaScript files
+*.js text eol=lf
+
+# CSS files
+*.css text eol=lf
+
+# JSON files
+*.json text eol=lf
+
+# XML files
+*.xml text eol=lf
+
+# Markdown files
+*.md text eol=lf
+
+# YAML files
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Shell script files
+*.sh text eol=lf
+
+# Image files (SVG, PNG, JPG, GIF, ICO)
+*.svg binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# Video files
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.mkv binary
+
+# Audio files
+*.mp3 binary
+*.wav binary
+*.ogg binary
+
+# Other binary files (e.g., fonts, PDFs)
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.xls binary
+*.doc binary
+*.docx binary
+*.ppt binary
+*.pptx binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.rar binary
+*.7z binary

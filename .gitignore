@@ -1,0 +1,51 @@
+# .gitignore 적용하기
+# git rm -r --cached .
+# git add .
+# git commit -m ".gitignore 적용"
+# git push origin 브랜치명
+
+# 파일 제외 (파일명.확장자)
+#phpinfo.php
+test.php
+.htaccess
+# .env
+_ide_helper.php
+	
+# 현재 경로에 있는 파일만 제외 (다른 경로의 동일한 파일명은 추적)
+#/파일명.txt
+	
+# 특정 경로안의 특정 파일 제외
+#폴더명/파일명.txt
+
+# 해당 확장자 파일 전체 제외
+*.log
+*.bak
+*.tar
+*.zip
+*.gz
+*.ffs_db
+
+# 확장자가 a이지만 lib.log 파일은 track에 포함
+#!lib.log
+
+# doc/notes.txt  파일 무시,  그러나 서브디렉토리내 txt 파일은 무시되지 않습니다  doc/server/arch.txt는 track에 포함
+#doc/*.txt
+
+# doc/ 디렉토리와 모든 서브 디렉토리 안의 확장자가 .pdf 인 모든 파일 제외
+#doc/**/*.pdf
+
+# 특정 폴더안의 파일 전부 제외
+#upload/*
+#!upload/.gitkeep
+src/data/*
+!src/data/.gitkeep
+session/*
+!session/.gitkeep
+data/cache/*
+# !data/.gitkeep
+
+# 예외
+#!제외할 파일명.txt
+
+# bak가 포함된 모든 파일 및 폴더 무시
+*bak*
