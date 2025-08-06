@@ -26,6 +26,7 @@ docker compose run --rm app php config:cache
 docker compose down
 docker compose up -d --remove-orphans
 docker compose up --build -d --remove-orphans
+docker compose down && docker compose up --build -d --remove-orphans
 
 # 라라벨 controller 생성
 
@@ -58,5 +59,20 @@ docker-compose exec app php artisan install:api
 
 # 라우트 캐시 삭제
 docker-compose exec app php artisan route:clear
+docker-compose exec app php artisan cache:clear
+docker compose down && docker compose up -d --remove-orphans
+
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan route:clear
+docker-compose exec app php artisan cache:clear
+docker compose down && docker compose up -d --remove-orphans
+
 docker-compose exec app php artisan route:cache
 docker-compose exec app php artisan route:list
+
+
+#Authenticate 미들웨어 생성 및 수정
+docker-compose exec app php artisan make:middleware Authenticate
+docker-compose exec app php artisan make:controller Auth/TokenController
+
+docker-compose exec app php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"

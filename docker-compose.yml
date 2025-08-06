@@ -6,9 +6,9 @@ services:
             context: .
             dockerfile: Dockerfile
         container_name: laravel_app
-        volumes:
-            - ./app:/var/www/html:delegated
-            # - /var/www/html/vendor # 이 라인을 추가하여 vendor 디렉토리를 제외
+        # volumes:
+        # - ./app:/var/www/html:delegated
+        # - /var/www/html/vendor # 이 라인을 추가하여 vendor 디렉토리를 제외
         # - ./supervisord/supervisord.conf:/etc/supervisord.conf
         ports:
             - "9000:9000"

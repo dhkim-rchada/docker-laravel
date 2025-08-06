@@ -1,11 +1,21 @@
+# Git
 .git
-.gitattributes
 .gitignore
-.gitmodules
-.gitkeep
-LICENSE
-ReadMe.md
-README.md
-build.sh
-test
-src/data/*
+
+# Composer
+/vendor
+
+# Node
+/node_modules
+
+# Laravel
+/storage/*
+!/storage/.gitignore
+/bootstrap/cache/*
+# !.env
+# /.env
+/.vscode
+
+# IDE
+.idea
+.vscode
