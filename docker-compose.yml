@@ -17,7 +17,7 @@ services:
             - redis
         environment:
             - APP_ENV=local
-        working_dir: /var/www/html
+        # working_dir: /var/www/html
         # command: supervisord -c /etc/supervisord.conf
         networks:
             - default # 기존 bridge 네트워크 연결
@@ -28,7 +28,7 @@ services:
         container_name: laravel_nginx
         volumes:
             # - ./app:/var/www/html
-            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
         # ports:
         # - "8080:80"
         depends_on:
@@ -57,6 +57,10 @@ services:
             TZ: Asia/Seoul
         volumes:
             - ./data/mariadb:/var/lib/mysql
+            # mariadb 설정 파일을 컨테이너에 마운트
+            - ./config/mariadb/my.cnf:/etc/mysql/conf.d/my.cnf
+            # 초기화 스크립트를 컨테이너에 마운트
+            - ./config/mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
 
     redis:
         image: redis:alpine

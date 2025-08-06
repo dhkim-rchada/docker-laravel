@@ -20,8 +20,9 @@ WORKDIR /var/www/html
 COPY ./app /var/www/html
 
 # Supervisord 설정 파일 복사
-COPY ./supervisord/supervisord.conf /etc/supervisord.conf
-COPY ./php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./config/supervisord/supervisord_dev.conf /etc/supervisord.conf
+# COPY ./config/supervisord/supervisord_prod.conf /etc/supervisord.conf
+COPY ./config/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 # 필요한 패키지 설치
 RUN composer install --no-dev --optimize-autoloader
