@@ -1,5 +1,12 @@
-#라라벨설치
+# Laravel 설치
 docker compose run --rm app composer create-project laravel/laravel .
+
+# APP_KEY 생성
+docker compose run --rm app php artisan key:generate
+
+# 마이그레이션 실행 (users, password_resets 등 테이블 생성됨)
+docker compose run --rm app php artisan migrate
+
 
 docker exec -it laravel_mariadb mysql -u root -p
 
