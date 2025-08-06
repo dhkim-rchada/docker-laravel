@@ -39,7 +39,6 @@ supervisord.pid
 # 특정 폴더안의 파일 전부 제외
 #upload/*
 #!upload/.gitkeep
-
 data/mariadb/*
 !data/mariadb/.gitkeep
 data/redis/*
