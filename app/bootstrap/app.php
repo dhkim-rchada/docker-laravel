@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // 'auth' 별칭을 사용자 정의 Authenticate 미들웨어에 연결
+        /* // 'auth' 별칭을 사용자 정의 Authenticate 미들웨어에 연결
         $middleware->alias([
             'auth' => \App\Http\Middleware\Authenticate::class,
         ]);
@@ -28,7 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Http\Middleware\HandleCors::class, // API 그룹에 직접 추가
-        ]);
+        ]); */
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // MethodNotAllowedHttpException 예외 처리 추가

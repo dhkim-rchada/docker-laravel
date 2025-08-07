@@ -8,6 +8,8 @@ services:
         container_name: laravel_app
         volumes:
             - ./app:/var/www/html:delegated
+            - cache_sync:/var/www/html/bootstrap/cache # 이 라인을 추가하여 cache 디렉토리를 제외
+            # - storage_sync:/var/www/html/storage # 이 라인을 추가하여 cache 디렉토리를 제외
             # - vendor_sync:/var/www/html/vendor # 이 라인을 추가하여 vendor 디렉토리를 제외
         # - ./supervisord/supervisord.conf:/etc/supervisord.conf
         ports:
@@ -86,3 +88,5 @@ networks:
         name: npm_proxy
 volumes:
     vendor_sync:
+    cache_sync:
+    storage_sync:

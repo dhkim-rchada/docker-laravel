@@ -1,3 +1,15 @@
+docker compose down
+docker compose up -d --remove-orphans
+docker compose up --build -d --remove-orphans
+docker compose down && docker compose up -d --remove-orphans
+docker compose down && docker compose up --build -d --remove-orphans
+
+#운영모드
+docker compose down && docker compose up --build -d --remove-orphans
+#개발모드
+docker compose down && docker compose -f docker-compose-dev.yml up --build -d --remove-orphans
+
+
 # Laravel 설치
 docker compose run --rm app composer create-project laravel/laravel .
 
@@ -23,10 +35,7 @@ docker compose run --rm app php artisan config:clear
 docker compose run --rm app php cache:clear
 docker compose run --rm app php config:cache
 
-docker compose down
-docker compose up -d --remove-orphans
-docker compose up --build -d --remove-orphans
-docker compose down && docker compose up --build -d --remove-orphans
+
 
 # 라라벨 controller 생성
 
@@ -76,3 +85,16 @@ docker-compose exec app php artisan make:middleware Authenticate
 docker-compose exec app php artisan make:controller Auth/TokenController
 
 docker-compose exec app php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+
+
+#Laravel IDE Helper 설치
+docker-compose exec app composer require --dev barryvdh/laravel-ide-helper
+#IDE Helper 생성
+docker-compose exec app php artisan ide-helper:generate
+docker-compose exec app php artisan ide-helper:meta
+docker-compose exec app php artisan ide-helper:models -N
+docker-compose exec app composer dump-autoload
+#IDE Helper 캐시 클리어
+docker-compose exec app php artisan cache:clear     
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan route:clear

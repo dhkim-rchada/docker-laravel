@@ -20,6 +20,7 @@ class TestController extends Controller
 
         // 화면에 출력
         return "<h1>PHP 버전: {$phpVersion}</h1>"
-             . "<h1>Laravel 버전: {$laravelVersion}</h1>";
+             . "<h1>Laravel 버전: {$laravelVersion}</h1>"
+             ."test";
     }
 }
